@@ -5,9 +5,9 @@
 - To start with `faceswap-orion`, you will need to know the following concepts:
     |Concept|Description|docker-image|
     |-|-|-|
-    |*`controller`*|A controller-docker to control jobs assignment |*orion-controller:zhouyu*|
-    |*`server`*|A server-docher to handle physical GPUs, execute actual work|*orion-server:zhouyu*|
-    |*`client`*|A client-docker with built-in modified `faceswap-orion` environment |*orion-faceswap:zhouyu*|
+    |*`controller`*|A controller-docker to control jobs assignment |*orion-controller*|
+    |*`server`*|A server-docher to handle physical GPUs, execute actual work|*orion-server*|
+    |*`client`*|A client-docker with built-in modified `faceswap-orion` environment |*orion-faceswap*|
     Go to [User-Guide](https://github.com/virtaitech/orion/blob/master/doc/Orion-User-Guide.md) if you want more details about the three concepts.
 - You will need to start both 3 docker to accually run `faceswap` with **`orion`**.
 - Client is your workspace; and you can just leave Server&Controller alone, once you have setup the environment.
@@ -16,8 +16,8 @@
 
 ## 2 Instruction
 
-- a) setup [*`controller`*](README.orion.md##3.1) & [*`server`*](README.orion.md##3.2)
-- b) start [*`client`*](README.orion.md##3.3); make sure you have mount your data into the docker.  
+- a) setup [*`controller`*](README.md#31-start-server-docker) & [*`server`*](README.md#32-start-controller-docker)
+- b) start [*`client`*](README.orion.md#33-start-client-docker); make sure you have mount your data into the docker.  
 - c) run environment test, to make sure you have setup right;  
     within *`client`*, under `/root/`:  
     ```
@@ -33,7 +33,7 @@
 ### 3.1 Start *`controller`* docker
 -  execute cmd:
     ```
-    docker run -itd --net host orion-controller:zhouyu
+    docker run -itd --net host orion-controller
     ```
     
 - *`controller`* will run as a **daemon** and listen at `port 0.0.0.0:9123` as default
@@ -51,7 +51,7 @@
             --ipc host \
             --pid host \
             --privileged \
-            orion-server:zhouyu
+            orion-server
     ```
     - -d : run as daemon at background；
     - --net host : allow docker to use host-device network; reduce work for environment settings
@@ -75,7 +75,7 @@
             --name orion.faceswap \
             -v /PATH/TO/YOUR/data/:/root/data/ \
             -w /root/ \
-            orion-faceswap:zhouyu
+            orion-faceswap
     ```
 - start the client with
     ```
@@ -91,7 +91,7 @@
 - modify `/etc/orion/client.conf` if you have to **change** your `network settings`
 
 ### 3.4 Check Environment
-- assume you have gone through [3.1]()-[3.3](); let's check your environment setup!
+- assume you have gone through [3.1](#31)-[3.3](#33); let's check your environment setup!
 - assume you are now inside *`client`* docker, when you 
 - run the environment test
     - go to `/root/` folder
@@ -110,7 +110,7 @@
     Be aware of your network settings~ make sure the ip is accessable! 
 - when you pass all the environment test, `congratuation`, you are ready to go !!!
 ### 3.4 play with `faceswap-orion`
-- assume you have go through [3.4 check environment]()
+- assume you have go through [3.4 check environment](#34-check-environment)
 - now let's start faceswap-orion
 - make sure you are now inside a *`client`*, which has passed environment check `env_test.sh`
 - go to `/root/`
