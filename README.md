@@ -1,6 +1,6 @@
 # Readme for FACESWAP-ORION
 >>best to view under vscode with markdown plugin
-distributed learning acceleration support by [virtaitech-orion](http://virtai.tech)
+>>distributed learning acceleration support by [virtaitech-orion](http://virtai.tech)
 ## 1 Overview
 - To start with `faceswap-orion`, you will need to know the following concepts:
     |Concept|Description|docker-image|
