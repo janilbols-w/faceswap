@@ -1,5 +1,5 @@
 # Readme for FACESWAP-ORION
->>best to view under vscode with markdown plugin
+>>best to view under vscode with markdown plugin  
 >>distributed learning acceleration support by [virtaitech-orion](http://virtai.tech)
 ## 1 Overview
 - To start with `faceswap-orion`, you will need to know the following concepts:
